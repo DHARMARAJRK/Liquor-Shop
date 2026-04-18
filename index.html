@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liquor Shop POS</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <h1 class="brand">Liquor Shop POS</h1>
+        <nav class="nav-links">
+          <a class="active" href="./index.html">POS</a>
+          <a href="./manage-menu.html">Manage Menu</a>
+          <a href="./reports.html">Monthly Reports</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="grid-2">
+        <section class="card" id="menuSection">
+          <h2 class="section-title">Menu</h2>
+          <div id="categoryRow" class="category-row"></div>
+          <div id="itemsGrid" class="items-grid"></div>
+        </section>
+
+        <aside class="card" id="billSection">
+          <h2 class="section-title">Bill</h2>
+          <div id="billList" class="bill-list"></div>
+          <div class="totals">
+            <div><span>Subtotal</span><strong id="subtotalValue">INR 0.00</strong></div>
+            <div><span>Tax (5%)</span><strong id="taxValue">INR 0.00</strong></div>
+            <div class="grand"><span>Total</span><strong id="totalValue">INR 0.00</strong></div>
+          </div>
+          <div id="billActions" class="actions">
+            <button class="btn btn-danger" id="clearCartBtn">Clear Cart</button>
+            <button class="btn btn-secondary" id="printBillBtn">Print Bill</button>
+            <button class="btn btn-accent" id="payNowBtn">Pay Now (QR)</button>
+          </div>
+          <div id="qrWrap" class="qr-wrap">
+            <img class="qr-img" src="./assets/qr-placeholder.svg" alt="Payment QR code placeholder" />
+            <p class="muted">Scan QR, collect payment, then confirm.</p>
+            <button class="btn btn-primary" id="confirmPaymentBtn">Confirm Payment</button>
+          </div>
+          <p id="posStatus" class="status"></p>
+        </aside>
+      </div>
+    </main>
+
+    <script src="./app.js"></script>
+    <script src="./pos.js"></script>
+  </body>
+</html>
