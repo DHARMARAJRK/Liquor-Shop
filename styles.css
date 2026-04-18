@@ -68,6 +68,19 @@ main {
   padding: 18px 0 24px;
 }
 
+.hero-banner {
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.hero-banner img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
 .grid-2 {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -293,6 +306,46 @@ td {
   }
   .form-grid {
     grid-template-columns: 1fr;
+  }
+  .hero-banner img {
+    height: 190px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: min(100%, 94%);
+  }
+
+  .topbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .brand {
+    font-size: 1.05rem;
+  }
+
+  .nav-links {
+    width: 100%;
+  }
+
+  .nav-links a {
+    flex: 1 1 calc(50% - 8px);
+    text-align: center;
+  }
+
+  .items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .bill-item {
+    grid-template-columns: 1fr auto;
+    gap: 6px;
+  }
+
+  .hero-banner img {
+    height: 160px;
   }
 }
 
