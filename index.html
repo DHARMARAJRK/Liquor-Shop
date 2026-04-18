@@ -3,13 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Liquor Shop POS</title>
+    <title>DMR Sundeep Group POS</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <header class="topbar">
       <div class="container topbar-inner">
-        <h1 class="brand">Liquor Shop POS</h1>
+        <div class="brand-wrap">
+          <h1 class="brand">DMR Sundeep Group</h1>
+          <p class="brand-sub">Sundeep Sarl</p>
+        </div>
         <nav class="nav-links">
           <a class="active" href="./index.html">POS</a>
           <a href="./manage-menu.html">Manage Menu</a>
@@ -21,7 +24,7 @@
     <main class="container">
       <section class="card hero-banner">
         <img
-          src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=80"
+          src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=1200&q=80"
           alt="Assorted premium liquor bottles on shelves"
         />
       </section>
@@ -34,6 +37,7 @@
 
         <aside class="card" id="billSection">
           <h2 class="section-title">Bill</h2>
+          <p class="invoice-note">Professional invoice will be generated automatically on Print.</p>
           <div id="billList" class="bill-list"></div>
           <div class="totals">
             <div><span>Subtotal</span><strong id="subtotalValue">INR 0.00</strong></div>
@@ -53,6 +57,41 @@
           <p id="posStatus" class="status"></p>
         </aside>
       </div>
+
+      <section id="printInvoice" class="print-invoice">
+        <div class="invoice-header">
+          <div>
+            <h2 id="invoiceShopName">DMR Sundeep Group</h2>
+            <p id="invoiceShopSubtitle">Sundeep Sarl</p>
+            <p class="invoice-contact">Premium Beverages Retail</p>
+          </div>
+          <img
+            src="https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&w=240&q=80"
+            alt="Shop emblem"
+          />
+        </div>
+        <div class="invoice-meta">
+          <p><strong>Invoice No:</strong> <span id="invoiceNumber">-</span></p>
+          <p><strong>Date:</strong> <span id="invoiceDate">-</span></p>
+        </div>
+        <table class="invoice-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+              <th>Rate</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody id="invoiceRows"></tbody>
+        </table>
+        <div class="invoice-totals">
+          <p><span>Subtotal</span><strong id="invoiceSubtotal">INR 0.00</strong></p>
+          <p><span>Tax (5%)</span><strong id="invoiceTax">INR 0.00</strong></p>
+          <p class="invoice-grand"><span>Grand Total</span><strong id="invoiceTotal">INR 0.00</strong></p>
+        </div>
+        <p class="invoice-footer">Thank you for choosing DMR Sundeep Group (Sundeep Sarl).</p>
+      </section>
     </main>
 
     <script src="./app.js"></script>

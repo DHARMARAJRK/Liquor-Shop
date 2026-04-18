@@ -1,13 +1,14 @@
 :root {
-  --bg: #f6f7fb;
+  --bg: #f3f0ff;
   --panel: #ffffff;
-  --primary: #512da8;
-  --accent: #ff7043;
-  --text: #222;
-  --muted: #687080;
-  --border: #e3e7ef;
+  --primary: #4a148c;
+  --accent: #f4511e;
+  --text: #1f1f2d;
+  --muted: #616a7c;
+  --border: #d9deeb;
   --ok: #2e7d32;
   --danger: #c62828;
+  --gold: #ffc857;
 }
 
 * {
@@ -18,7 +19,10 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: var(--text);
-  background: var(--bg);
+  background:
+    linear-gradient(180deg, rgba(74, 20, 140, 0.1), rgba(244, 81, 30, 0.06)),
+    url("https://images.unsplash.com/photo-1516997121675-4c2d1684aa3e?auto=format&fit=crop&w=1600&q=80")
+      center / cover fixed no-repeat;
 }
 
 .container {
@@ -27,8 +31,9 @@ body {
 }
 
 .topbar {
-  background: var(--panel);
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(90deg, rgba(74, 20, 140, 0.95), rgba(136, 14, 79, 0.93));
+  border-bottom: 2px solid var(--gold);
+  color: #fff;
 }
 
 .topbar-inner {
@@ -39,9 +44,20 @@ body {
   padding: 12px 0;
 }
 
+.brand-wrap {
+  display: grid;
+  gap: 2px;
+}
+
 .brand {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+}
+
+.brand-sub {
+  margin: 0;
+  color: #e6ddff;
+  font-size: 0.9rem;
 }
 
 .nav-links {
@@ -52,16 +68,17 @@ body {
 
 .nav-links a {
   text-decoration: none;
-  color: var(--text);
-  border: 1px solid var(--border);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 999px;
   padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .nav-links a.active {
-  background: var(--primary);
-  color: #fff;
-  border-color: var(--primary);
+  background: var(--gold);
+  color: #3b1b00;
+  border-color: var(--gold);
 }
 
 main {
@@ -72,6 +89,7 @@ main {
   padding: 0;
   overflow: hidden;
   margin-bottom: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.55);
 }
 
 .hero-banner img {
@@ -88,14 +106,21 @@ main {
 }
 
 .card {
-  background: var(--panel);
+  background: rgba(255, 255, 255, 0.96);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 14px;
+  box-shadow: 0 10px 28px rgba(27, 20, 53, 0.08);
 }
 
 .section-title {
   margin: 0 0 10px;
+}
+
+.invoice-note {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.86rem;
 }
 
 .category-row {
@@ -300,6 +325,88 @@ td {
   margin: 0 auto 10px;
 }
 
+.print-invoice {
+  display: none;
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #1f2937;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.invoice-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.invoice-header p {
+  margin: 2px 0;
+}
+
+.invoice-header img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.invoice-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.invoice-meta p {
+  margin: 0;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-table th,
+.invoice-table td {
+  border: 1px solid #d1d5db;
+  padding: 8px 6px;
+}
+
+.invoice-table th {
+  background: #f3f4f6;
+}
+
+.invoice-totals {
+  margin-top: 14px;
+  margin-left: auto;
+  width: min(340px, 100%);
+}
+
+.invoice-totals p {
+  margin: 6px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.invoice-grand {
+  border-top: 1px dashed #9ca3af;
+  padding-top: 8px;
+  font-size: 1.04rem;
+}
+
+.invoice-footer {
+  margin-top: 18px;
+  border-top: 1px solid #d1d5db;
+  padding-top: 8px;
+  color: #4b5563;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 900px) {
   .grid-2 {
     grid-template-columns: 1fr;
@@ -309,6 +416,12 @@ td {
   }
   .hero-banner img {
     height: 190px;
+  }
+}
+
+@media (max-width: 700px) {
+  .invoice-meta {
+    flex-direction: column;
   }
 }
 
@@ -354,9 +467,14 @@ td {
     background: #fff;
   }
   .topbar,
+  .hero-banner,
   #menuSection,
   #billActions,
-  #qrWrap {
+  #qrWrap,
+  #billList,
+  .totals,
+  #posStatus,
+  .invoice-note {
     display: none !important;
   }
   main {
@@ -364,5 +482,15 @@ td {
   }
   #billSection {
     border: none;
+    box-shadow: none;
+    background: #fff;
+    padding: 0;
+  }
+  .print-invoice {
+    display: block !important;
+    border: 1px solid #111827;
+    border-radius: 4px;
+    padding: 14px;
+    margin-top: 8px;
   }
 }

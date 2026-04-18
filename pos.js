@@ -1,6 +1,8 @@
 ShopStore.initializeStore();
 
 const TAX_RATE = 0.05;
+const SHOP_NAME = "DMR Sundeep Group";
+const SHOP_SUBTITLE = "Sundeep Sarl";
 let selectedCategory = "all";
 
 const categoryRow = document.getElementById("categoryRow");
@@ -15,6 +17,14 @@ const payNowBtn = document.getElementById("payNowBtn");
 const confirmPaymentBtn = document.getElementById("confirmPaymentBtn");
 const qrWrap = document.getElementById("qrWrap");
 const posStatus = document.getElementById("posStatus");
+const invoiceShopName = document.getElementById("invoiceShopName");
+const invoiceShopSubtitle = document.getElementById("invoiceShopSubtitle");
+const invoiceNumber = document.getElementById("invoiceNumber");
+const invoiceDate = document.getElementById("invoiceDate");
+const invoiceRows = document.getElementById("invoiceRows");
+const invoiceSubtotal = document.getElementById("invoiceSubtotal");
+const invoiceTax = document.getElementById("invoiceTax");
+const invoiceTotal = document.getElementById("invoiceTotal");
 
 function setStatus(message, isError = false) {
   posStatus.textContent = message;
@@ -170,8 +180,45 @@ function confirmPayment() {
   setStatus("Payment confirmed and bill saved.");
 }
 
+function buildPrintInvoice() {
+  const cart = ShopStore.getCartItems();
+  if (!cart.length) {
+    setStatus("Add items before printing invoice.", true);
+    return false;
+  }
+
+  const totals = getBillTotals(cart);
+  invoiceShopName.textContent = SHOP_NAME;
+  invoiceShopSubtitle.textContent = SHOP_SUBTITLE;
+  invoiceNumber.textContent = makeId("INV").toUpperCase();
+  invoiceDate.textContent = new Date().toLocaleString("en-IN");
+  invoiceRows.innerHTML = "";
+
+  cart.forEach((item) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${item.name}</td>
+      <td>${item.qty}</td>
+      <td>${formatCurrency(item.price)}</td>
+      <td>${formatCurrency(item.price * item.qty)}</td>
+    `;
+    invoiceRows.appendChild(row);
+  });
+
+  invoiceSubtotal.textContent = formatCurrency(totals.subtotal);
+  invoiceTax.textContent = formatCurrency(totals.tax);
+  invoiceTotal.textContent = formatCurrency(totals.total);
+  return true;
+}
+
 clearCartBtn.addEventListener("click", clearCart);
-printBillBtn.addEventListener("click", () => window.print());
+printBillBtn.addEventListener("click", () => {
+  const canPrint = buildPrintInvoice();
+  if (!canPrint) {
+    return;
+  }
+  window.print();
+});
 payNowBtn.addEventListener("click", () => {
   const hasCart = ShopStore.getCartItems().length > 0;
   if (!hasCart) {
