@@ -38,6 +38,12 @@
         <aside class="card" id="billSection">
           <h2 class="section-title">Bill</h2>
           <p class="invoice-note">Professional invoice will be generated automatically on Print.</p>
+          <div class="customer-fields">
+            <label for="customerNameInput">Customer Name</label>
+            <input id="customerNameInput" type="text" placeholder="Enter customer name" />
+            <label for="customerPhoneInput">Customer Phone</label>
+            <input id="customerPhoneInput" type="tel" placeholder="Enter phone number" />
+          </div>
           <div id="billList" class="bill-list"></div>
           <div class="totals">
             <div><span>Subtotal</span><strong id="subtotalValue">INR 0.00</strong></div>
@@ -73,6 +79,10 @@
         <div class="invoice-meta">
           <p><strong>Invoice No:</strong> <span id="invoiceNumber">-</span></p>
           <p><strong>Date:</strong> <span id="invoiceDate">-</span></p>
+        </div>
+        <div class="invoice-customer">
+          <p><strong>Customer Name:</strong> <span id="invoiceCustomerName">Walk-in Customer</span></p>
+          <p><strong>Customer Phone:</strong> <span id="invoiceCustomerPhone">N/A</span></p>
         </div>
         <table class="invoice-table">
           <thead>

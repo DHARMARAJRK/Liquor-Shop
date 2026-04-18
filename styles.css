@@ -123,6 +123,13 @@ main {
   font-size: 0.86rem;
 }
 
+.customer-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
 .category-row {
   display: flex;
   gap: 8px;
@@ -365,6 +372,14 @@ td {
   margin: 0;
 }
 
+.invoice-customer {
+  margin-bottom: 10px;
+}
+
+.invoice-customer p {
+  margin: 4px 0;
+}
+
 .invoice-table {
   width: 100%;
   border-collapse: collapse;
@@ -474,7 +489,8 @@ td {
   #billList,
   .totals,
   #posStatus,
-  .invoice-note {
+  .invoice-note,
+  .customer-fields {
     display: none !important;
   }
   main {

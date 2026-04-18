@@ -25,6 +25,10 @@ const invoiceRows = document.getElementById("invoiceRows");
 const invoiceSubtotal = document.getElementById("invoiceSubtotal");
 const invoiceTax = document.getElementById("invoiceTax");
 const invoiceTotal = document.getElementById("invoiceTotal");
+const customerNameInput = document.getElementById("customerNameInput");
+const customerPhoneInput = document.getElementById("customerPhoneInput");
+const invoiceCustomerName = document.getElementById("invoiceCustomerName");
+const invoiceCustomerPhone = document.getElementById("invoiceCustomerPhone");
 
 function setStatus(message, isError = false) {
   posStatus.textContent = message;
@@ -192,6 +196,8 @@ function buildPrintInvoice() {
   invoiceShopSubtitle.textContent = SHOP_SUBTITLE;
   invoiceNumber.textContent = makeId("INV").toUpperCase();
   invoiceDate.textContent = new Date().toLocaleString("en-IN");
+  invoiceCustomerName.textContent = customerNameInput.value.trim() || "Walk-in Customer";
+  invoiceCustomerPhone.textContent = customerPhoneInput.value.trim() || "N/A";
   invoiceRows.innerHTML = "";
 
   cart.forEach((item) => {
